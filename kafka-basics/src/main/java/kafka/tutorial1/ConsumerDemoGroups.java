@@ -16,11 +16,12 @@ import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 public class ConsumerDemoGroups {
     public static void main(String[] args) {
         final Logger log = LoggerFactory.getLogger(ConsumerDemoGroups.class);
+        String bootstrapServers = "127.0.0.1:9092";
         String groupId = "my-fourth-application";
         String topic = "first_topic";
 
         Properties properties = new Properties();
-        properties.setProperty(BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        properties.setProperty(BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.setProperty(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(GROUP_ID_CONFIG, groupId);
