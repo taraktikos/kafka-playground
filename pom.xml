@@ -16,6 +16,7 @@
         <module>kafka-streams-word-count</module>
         <module>kafka-streams-favourite-color</module>
         <module>kafka-streams-bank-balance-exactly-once</module>
+        <module>kafka-streams-user-event-enricher</module>
     </modules>
 
     <dependencies>
