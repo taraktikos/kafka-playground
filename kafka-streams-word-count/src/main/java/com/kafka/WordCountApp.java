@@ -3,6 +3,7 @@ package com.kafka;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Produced;
@@ -26,6 +27,16 @@ public class WordCountApp {
         properties.setProperty(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         properties.setProperty(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 
+        final WordCountApp wordCountApp = new WordCountApp();
+
+        KafkaStreams streams = new KafkaStreams(wordCountApp.createTopology(), properties);
+        streams.start();
+        System.out.println(streams.toString());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+    }
+
+    public Topology createTopology() {
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, String> wordCountInput = builder.stream("word-count-input");
 
@@ -37,11 +48,6 @@ public class WordCountApp {
                 .count();
 
         wordCounts.toStream().to("word-count-output", Produced.with(Serdes.String(), Serdes.Long()));
-
-        KafkaStreams streams = new KafkaStreams(builder.build(), properties);
-        streams.start();
-        System.out.println(streams.toString());
-
-        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+        return builder.build();
     }
 }
