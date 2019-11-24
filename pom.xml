@@ -15,6 +15,7 @@
         <module>kafka-streams-filter-tweets</module>
         <module>kafka-streams-word-count</module>
         <module>kafka-streams-favourite-color</module>
+        <module>kafka-streams-bank-balance-exactly-once</module>
     </modules>
 
     <dependencies>
