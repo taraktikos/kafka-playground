@@ -17,6 +17,7 @@
         <module>kafka-streams-favourite-color</module>
         <module>kafka-streams-bank-balance-exactly-once</module>
         <module>kafka-streams-user-event-enricher</module>
+        <module>kafka-orders</module>
     </modules>
 
     <dependencies>

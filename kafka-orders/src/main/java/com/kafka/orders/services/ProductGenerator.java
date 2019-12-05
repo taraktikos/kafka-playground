@@ -10,13 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import static com.kafka.orders.Topic.Topics.INVENTORY;
 import static org.apache.kafka.clients.producer.ProducerConfig.ACKS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.*;
 
 public class ProductGenerator {
     public static void main(String[] args) {
         final Properties config = createConfig();
-        final Topic<Product, Integer> topic = Topic.Topics.INVENTORY;
+        final Topic<Product, Integer> topic = INVENTORY;
 
         final List<Pair<Product, Integer>> inventory = Arrays.asList(Pair.of(Product.UNDERPANTS, 20), Pair.of(Product.JUMPERS, 10));
 

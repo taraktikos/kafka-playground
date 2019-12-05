@@ -5,7 +5,7 @@ import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serializer;
 
-public class ProductTypeSerde implements Serde<Product> {
+public class ProductSerde implements Serde<Product> {
     @Override
     public Serializer<Product> serializer() {
         return (topic, data) -> data.toString().getBytes();
